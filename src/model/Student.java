@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Student {
 	
@@ -59,21 +58,16 @@ public class Student {
 		if (myCourse == null)
 			return;
 		
-		ArrayList <Offering> theOfferingList = myCourse.getOfferingList();
 		
-		Iterator <Registration> iter = regList.iterator();
-		
-		while (iter.hasNext()) {
-			Registration r = iter.next();
+		for (int i = 0; i < regList.size(); i++) {
 			
-			if (r.getTheOffering().getTheCourse().getCourseName().equals(courseName) &&
-				r.getTheOffering().getTheCourse().getCourseNum() == courseNum &&
-				r.getTheOffering().getSectionNum() == section) {
-				iter.remove();
-				r.deregister(this, r.getTheOffering());
-				System.out.println("Deregistered.");
+			if (regList.get(i).getTheOffering().getTheCourse().getCourseName().equals(courseName) &&
+				regList.get(i).getTheOffering().getTheCourse().getCourseNum() == courseNum &&
+				regList.get(i).getTheOffering().getSectionNum() == section) {
+					regList.get(i).deregister(this, regList.get(i).getTheOffering());
+					System.out.println("Deregistered.");
 			}
-			break;
+			
 		}
 	}
 	
