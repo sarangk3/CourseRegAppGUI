@@ -1,3 +1,4 @@
+package model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +15,7 @@ public class Student {
 		setRegList(new ArrayList <Registration>());
 	}
 	public void registerForCourse (CourseCat cat, String courseName, int courseNum, int section) {
+		
 		Course myCourse = cat.searchCat(courseName, courseNum);
 		//Now the student needs to make sure the section exists. and if it does, register!
 		//A student registers by:

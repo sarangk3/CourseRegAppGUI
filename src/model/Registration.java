@@ -1,3 +1,4 @@
+package model;
 
 public class Registration {
 	
@@ -23,7 +24,7 @@ public class Registration {
 		theOffering.addRegistration(this);
 	}
 
-	private void removeRegistration() {
+	public void removeRegistration() {
 		theStudent.removeRegistration(this);
 		theOffering.removeRegistration(this);
 	}

@@ -1,6 +1,10 @@
+package controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import model.CourseCat;
+import model.Student;
 
 
 //This is my "FrontEnd!"
