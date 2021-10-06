@@ -83,6 +83,7 @@ public class CourseCat {
 				return c;
 			}
 		}
+		
 		System.err.println("Course " + courseName + " " + courseNum + " does NOT exist!");
 		return null;
 	}
@@ -106,6 +107,8 @@ public class CourseCat {
 		this.courseList = courseList;
 	}
 	
+	
+
 	@Override
 	public String toString() {
 		String temp = "";

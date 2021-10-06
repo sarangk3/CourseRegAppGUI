@@ -1,20 +1,29 @@
 package model;
 
 import java.util.ArrayList;
-
+import controller.StudentController;
 public class Student {
 	
 	private String studentName;
 	private int studentId;
 	private ArrayList <Registration> regList;    //list of course sections
+	StudentController studentController;
+	
+	
+	public Student (StudentController studentController) {
+		this.studentController = studentController;
+	}
 	
 	public Student  (String studentName, int studentId) {
 		setStudentName (studentName);
 		setStudentId (studentId);
 		setRegList(new ArrayList <Registration>());
-	}
-	public void registerForCourse (CourseCat cat, String courseName, int courseNum, int section) {
 		
+		
+	}
+	
+	public void registerForCourse (CourseCat cat, String courseName, int courseNum, int section) {
+	
 		Course myCourse = cat.searchCat(courseName, courseNum);
 		//Now the student needs to make sure the section exists. and if it does, register!
 		//A student registers by:
@@ -32,6 +41,9 @@ public class Student {
 		
 		Registration reg = new Registration ();
 		reg.register(this, theOffering);
+		
+	
+		
 		System.out.println("Registered.");
 		
 		int counter = 0;

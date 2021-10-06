@@ -27,23 +27,28 @@ public class CourseCatalogueController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == theView.option1) {
+				theView.clearTextArea();
 				String courseName;
 				ArrayList <Course> courseList = new ArrayList<Course>();
 				courseName = theView.getCourseName();
 				courseList = CourseCat.searchCat(courseName); //returns Arraylist
 				theView.returnCourseList(courseList); //View calls for the coureseList
+				theView.addEndLine();
 			}
 			
 			
 			if(e.getSource() == theView.option4) {
+				theView.clearTextArea();
 				ArrayList <Course> courseList = new ArrayList<Course>();
 				courseList = CourseCat.getCourseList(); //returns Arraylist
 				theView.returnCourseList(courseList); //View calls for the coureseList
+				theView.addEndLine();
 			}
 			
 			//Clears the JTextArea
 			if(e.getSource() == theView.option6) { 
 				theView.clearTextArea();
+				theView.addIntro();
 			}
 			
 			//Exits the program.
