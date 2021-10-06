@@ -58,24 +58,41 @@ public class StudentController {
 				
 				int studentId, courseNum, section;
 				String courseName;
+				
 				studentId = theView.getStudentId();
 				courseName = theView.getCourseName();
 				courseNum = theView.getCourseNum();
 				section = theView.getSection();
 
-				checkStudentId(studentId);
-				checkCourseName(courseName);
-				checkCourseNum(courseNum);
-				checkCourseSection(section);
+				if (checkStudentId(studentId)==false)
+				{
+					theView.print("Please Enter Student ID\n");
+				}
 				
+				if (checkCourseName(courseName)==false)
+				{
+					theView.print("Please Enter Course Name\n");
+				}
+				if (checkCourseNum(courseNum)==false)
+				{
+					theView.print("Please Enter Course Number\n");
+				}
 				
-				studentModel.get(studentId-1).registerForCourse(theCourseCatModel,courseName, courseNum, section);
+				if (checkCourseSection(section)==false)
+				{
+					theView.print("Please Enter Course Section\n");
+				}
 				
+				if (checkStudentId(studentId)==false || checkCourseName(courseName)==false || checkCourseNum(courseNum)==false || 
+				   (checkCourseSection(section)==false)) {
+					theView.print("Registration Unsuccessful\n");
+					theView.addEndLine();
+				}
+				else {
+					studentModel.get(studentId-1).registerForCourse(theCourseCatModel,courseName, courseNum, section);
+					theView.print("Successfully Registered!\n");
+				}
 				
-				
-				//theView.print("Registration Unsuccessful");
-				theView.print("Successfully Registered!\n");
-				theView.addEndLine();
 			}
 			
 			
@@ -91,14 +108,35 @@ public class StudentController {
 				courseNum = theView.getCourseNum();
 				section = theView.getSection();
 				
-				checkStudentId(studentId);
-				checkCourseName(courseName);
-				checkCourseNum(courseNum);
-				checkCourseSection(section);
-		
+				if (checkStudentId(studentId)==false)
+				{
+					theView.print("Please Enter Student ID\n");
+				}
+				
+				if (checkCourseName(courseName)==false)
+				{
+					theView.print("Please Enter Course Name\n");
+				}
+				if (checkCourseNum(courseNum)==false)
+				{
+					theView.print("Please Enter Course Number\n");
+				}
+				
+				if (checkCourseSection(section)==false)
+				{
+					theView.print("Please Enter Course Section\n");
+				}
+				
+				if (checkStudentId(studentId)==false || checkCourseName(courseName)==false || checkCourseNum(courseNum)==false || 
+				   (checkCourseSection(section)==false)) {
+					theView.print("Deregistration Unsuccessful\n");
+					theView.addEndLine();
+				}
+				else {
 				studentModel.get(studentId-1).deregisterForCourse(theCourseCatModel,courseName, courseNum, section);
 				theView.print("Successfully Deregistered!\n");
 				theView.addEndLine();
+				}
 			}
 			
 			
@@ -115,7 +153,7 @@ public class StudentController {
 					courseList.add(studentModel.get(studentId-1).getRegList().get(i).getTheOffering().getTheCourse());
 			
 				if (courseList.size()==0)
-					theView.print("No course Registered");
+					theView.print("No courses Registered\n");
 				
 				//theView.returnOfferingList(offeringList);
 				theView.returnStudentCourses(courseList); //View calls for the coureseList
@@ -132,7 +170,7 @@ public class StudentController {
 		
 		
 
-		private void checkStudentId(int studentId) {
+		private boolean checkStudentId(int studentId) {
 			
 			boolean found = false;
 			for (Student s : studentModel) {
@@ -140,33 +178,27 @@ public class StudentController {
 					found = true;
 					break; }
 			}
-			if (found==false)
-			{
-				theView.printError();
-				System.out.println("StudentID");
-			}
-			}
+			return found;
 	
-		private void checkCourseName(String courseName) {
+		}
+	
+		private boolean checkCourseName(String courseName) {
 		
 			boolean found = false;
 			for (int i=0;i < theCourseCatModel.getCourseList().size();i++) {
-				if (courseName == theCourseCatModel.getCourseList().get(i).getCourseName()) {
+				if (courseName.equals(theCourseCatModel.getCourseList().get(i).getCourseName())) {
 					found=true;	
 					break;
 				}
 			}
 			
-			if (found==false)
-			{
-				theView.printError();
-				System.out.println("coursename");
-			}
-			}
+			return found;
+			
+		}
 		
 		
 		
-		private void checkCourseNum(int courseNum) {		
+		private boolean checkCourseNum(int courseNum) {		
 		boolean found = false;
 			for (int i=0;i < theCourseCatModel.getCourseList().size();i++) {
 				if (courseNum == theCourseCatModel.getCourseList().get(i).getCourseNum()) {
@@ -174,14 +206,12 @@ public class StudentController {
 					break;
 				}
 			}
-			if (found==false)
-			{
-				theView.printError();
-				System.out.println("course number");
-			}
+			
+			return found;
+			
 		}
 		//Iterate through all sections and output error if user entered incorrect value 
-		private void checkCourseSection(int section) {
+		private boolean checkCourseSection(int section) {
 		boolean found = false;
 		for (int i=0;i < theCourseCatModel.getCourseList().get(i).getOfferingList().size();i++) {
 			if (section == theCourseCatModel.getCourseList().get(i).getOfferingList().get(i).getSectionNum()){
@@ -189,11 +219,9 @@ public class StudentController {
 				break;
 			}
 		}
-		if (found==false)
-		{
-			theView.printError();
-			System.out.println("Section");
-		}
+		
+		return found;
+		
 		}
 }
 }

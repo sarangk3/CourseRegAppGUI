@@ -120,35 +120,29 @@ public class StudentCatalogueView extends JFrame {
 			area.setText(null);
 		}
 		
-		public String getCourseName () {
+		public String getCourseName () {	
 			if (courseName.getText().isEmpty())
-				print("Please input Course Name\n");	
-			
+				return "";
 			return courseName.getText();
 			//return Integer.parseInt(firstNumber.getText());
 		}
 		
 		public Integer getStudentId() {
-	
 			if (sIdNum.getText().isEmpty())
-				print("Please input Student Number\n");	
-			
+					return 0;
 			return Integer.parseInt(sIdNum.getText());
 		}
 		
 		
-		public Integer getCourseNum() {
-			
+		public Integer getCourseNum() {	
 			if (courseNum.getText().isEmpty())
-				print("Please input Course Number\n");	
-			
+				return 0;
 			return Integer.parseInt(courseNum.getText());
 		}
 		
-		public Integer getSection() {
+		public Integer getSection() {	
 			if (courseSection.getText().isEmpty())
-				print("Please input Course Section\n");	
-			
+				return 0;
 			return Integer.parseInt(courseSection.getText());
 		}
 		
