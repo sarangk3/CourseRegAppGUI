@@ -128,7 +128,7 @@ public class StudentController {
 				}
 				
 				if (checkStudentId(studentId)==false || checkCourseName(courseName)==false || checkCourseNum(courseNum)==false || 
-				   (checkCourseSection(section)==false)) {
+				   (checkCourseSection(section)==false) || studentModel.get(studentId-1).deregisterForCourse(theCourseCatModel,courseName, courseNum, section) == false) {
 					theView.print("Deregistration Unsuccessful\n");
 					theView.addEndLine();
 				}

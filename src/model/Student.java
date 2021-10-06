@@ -7,12 +7,9 @@ public class Student {
 	private String studentName;
 	private int studentId;
 	private ArrayList <Registration> regList;    //list of course sections
-	StudentController studentController;
 	
 	
-	public Student (StudentController studentController) {
-		this.studentController = studentController;
-	}
+	
 	
 	public Student  (String studentName, int studentId) {
 		setStudentName (studentName);
@@ -65,22 +62,23 @@ public class Student {
 		
 	}
 
-	public void deregisterForCourse (CourseCat cat, String courseName, int courseNum, int section) {
+	public boolean deregisterForCourse (CourseCat cat, String courseName, int courseNum, int section) {
 		Course myCourse = cat.searchCat(courseName, courseNum);
 		if (myCourse == null)
-			return;
+			return false;
 		
-		
+		boolean found = false;
 		for (int i = 0; i < regList.size(); i++) {
 			
 			if (regList.get(i).getTheOffering().getTheCourse().getCourseName().equals(courseName) &&
 				regList.get(i).getTheOffering().getTheCourse().getCourseNum() == courseNum &&
 				regList.get(i).getTheOffering().getSectionNum() == section) {
+					found = true;
 					regList.get(i).deregister(this, regList.get(i).getTheOffering());
 					System.out.println("Deregistered.");
 			}
-			
 		}
+		return found;
 	}
 	
 	
